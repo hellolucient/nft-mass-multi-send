@@ -1,15 +1,11 @@
 [build]
 builder = "NIXPACKS"
-buildCommand = "apt-get update && apt-get install -y python3 make g++ && npm ci --legacy-peer-deps && npm run build"
 
 [deploy]
 startCommand = "npm start"
 healthcheckPath = "/"
 healthcheckTimeout = 100
 restartPolicyType = "ON_FAILURE"
-
-[nixpacks]
-install_cmd = "npm install --legacy-peer-deps --no-optional --no-package-lock"
 
 [build.env]
 NODE_VERSION = "20.18.0"
