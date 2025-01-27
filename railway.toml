@@ -12,4 +12,6 @@ restartPolicyType = "ON_FAILURE"
 install_cmd = "npm install --legacy-peer-deps --no-optional --no-package-lock"
 
 [build.env]
-NODE_VERSION = "20.18.0" 
+NODE_VERSION = "20.18.0"
+NPM_CONFIG_LEGACY_PEER_DEPS = "true"
+NPM_CONFIG_ENGINE_STRICT = "false" 
