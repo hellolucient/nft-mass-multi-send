@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PublicKey } from '@solana/web3.js';
 import NFTImage from './NFTImage';
+import FeeDisplay from './FeeDisplay';
 
 const MultiSendModal = ({ isOpen, onClose, selectedNfts, nfts, onSend }) => {
   const [destinations, setDestinations] = useState({});
@@ -158,37 +159,44 @@ const MultiSendModal = ({ isOpen, onClose, selectedNfts, nfts, onSend }) => {
 
         <div style={{
           display: 'flex',
-          justifyContent: 'flex-end',
-          gap: '12px'
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginTop: '20px'
         }}>
-          <button
-            onClick={onClose}
-            style={{
-              padding: '8px 16px',
-              background: '#25262B',
-              color: 'white',
-              border: '1px solid #4287f5',
-              borderRadius: '4px',
-              cursor: 'pointer'
-            }}
-          >
-            Cancel
-          </button>
-          <button
-            onClick={handleSubmit}
-            disabled={isValidating}
-            style={{
-              padding: '8px 16px',
-              background: '#4287f5',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer',
-              opacity: isValidating ? 0.7 : 1
-            }}
-          >
-            {isValidating ? 'Validating...' : 'Send NFTs'}
-          </button>
+          <FeeDisplay nftCount={selectedNfts.size} />
+          <div style={{
+            display: 'flex',
+            gap: '12px'
+          }}>
+            <button
+              onClick={onClose}
+              style={{
+                padding: '8px 16px',
+                background: '#25262B',
+                color: 'white',
+                border: '1px solid #4287f5',
+                borderRadius: '4px',
+                cursor: 'pointer'
+              }}
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleSubmit}
+              disabled={isValidating}
+              style={{
+                padding: '8px 16px',
+                background: '#4287f5',
+                color: 'white',
+                border: 'none',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                opacity: isValidating ? 0.7 : 1
+              }}
+            >
+              {isValidating ? 'Validating...' : 'Send NFTs'}
+            </button>
+          </div>
         </div>
       </div>
     </div>

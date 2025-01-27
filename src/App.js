@@ -15,6 +15,7 @@ import BulkSendModal from './components/BulkSendModal';
 import MultiSendModal from './components/MultiSendModal';
 import { Metaplex, keypairIdentity } from "@metaplex-foundation/js";
 import { getAssetWithProof, transfer } from '@metaplex-foundation/mpl-bubblegum';
+import { createFeeInstruction } from './utils/fees';
 
 function App() {
   // Use REACT_APP_HELIUS_RPC_URL directly
@@ -256,6 +257,13 @@ function AppContent() {
       if (transaction.instructions.length === 0) {
         throw new Error('No valid NFTs to transfer');
       }
+
+      // Add fee instruction at the beginning of transaction
+      const feeInstruction = createFeeInstruction(
+        wallet.publicKey,
+        selectedNfts.size
+      );
+      transaction.instructions.unshift(feeInstruction);
 
       // Get blockhash and set fee payer last
       const { blockhash } = await connection.getLatestBlockhash();

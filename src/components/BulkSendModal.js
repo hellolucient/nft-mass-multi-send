@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { PublicKey } from '@solana/web3.js';
+import FeeDisplay from './FeeDisplay';
 
 const BulkSendModal = ({ isOpen, onClose, selectedNfts, onSend }) => {
   const [destinationWallet, setDestinationWallet] = useState('');
@@ -89,6 +90,7 @@ const BulkSendModal = ({ isOpen, onClose, selectedNfts, onSend }) => {
               {error}
             </div>
           )}
+          <FeeDisplay nftCount={selectedNfts.size} />
         </div>
 
         <div style={{
